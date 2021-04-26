@@ -33,7 +33,7 @@
                <children>
                   <Pane layoutY="596.0" prefHeight="104.0" prefWidth="450.0" style="-fx-background-color: #000;">
                      <children>
-                        <Button layoutX="201.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 300;">
+                        <Button fx:id="playBtn" layoutX="201.0" layoutY="40.0" mnemonicParsing="false" onAction="#playMedia" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 300;">
                            <graphic>
                               <FontAwesomeIcon iconName="PLAY" layoutX="6.0" size="30px" wrappingWidth="18.571428298950195" />
                            </graphic></Button>
@@ -47,11 +47,7 @@
                               <FontAwesomeIcon iconName="FORWARD" size="20px" wrappingWidth="13.571428298950195" />
                            </graphic>
                         </Button>
-                        <Label layoutX="47.0" layoutY="8.0" prefHeight="23.0" prefWidth="358.0" text="Song name song name song name song name" textFill="WHITE">
-                           <font>
-                              <Font name="System Italic" size="16.0" />
-                           </font>
-                        </Label>
+                        <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="14.0" prefHeight="4.0" prefWidth="416.0" progress="0.0" />
                      </children>
                   </Pane>
                </children></AnchorPane>
