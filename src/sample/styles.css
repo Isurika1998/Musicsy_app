@@ -1,8 +1,19 @@
-.songLbl {
-    color: red;
+.list-view .list-cell {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-pref-height: 50px;
+    -fx-border-width: 1px 0px 0px 0px;
+    -fx-border-color: white;
+    -fx-font-family: Calibri;
+    -fx-font-size:17px;
 }
 
-.progress-bar > .bar {
-    -fx-background-insets: 1 1 2 1;
-    -fx-padding: 0.20em;
+.list-view .scroll-bar {
+    -fx-background-color:  #3b9052;
 }
+
+.list-view, .split-pane {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+

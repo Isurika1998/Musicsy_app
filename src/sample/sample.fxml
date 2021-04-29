@@ -77,67 +77,7 @@
                               </JFXButton>
                            </children>
                         </HBox>
-                        <HBox fx:id="songName" layoutX="36.0" layoutY="198.0" prefHeight="58.0" prefWidth="379.0" style="-fx-border-color: #333; -fx-border-width: 1 0 1 0;">
-                           <children>
-                              <JFXButton fx:id="nameBtn" alignment="BASELINE_LEFT" contentDisplay="CENTER" prefHeight="61.0" prefWidth="379.0" text="Song name" textAlignment="JUSTIFY" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label alignment="CENTER" prefHeight="56.0" prefWidth="93.0" text="0:00" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri" size="17.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="36.0" layoutY="256.0" prefHeight="58.0" prefWidth="379.0" style="-fx-border-color: #333; -fx-border-width: 1 0 1 0;">
-                           <children>
-                              <JFXButton alignment="BASELINE_LEFT" contentDisplay="CENTER" prefHeight="61.0" prefWidth="379.0" text="Song name" textAlignment="JUSTIFY" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label alignment="CENTER" prefHeight="56.0" prefWidth="93.0" text="0:00" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri" size="17.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="36.0" layoutY="314.0" prefHeight="58.0" prefWidth="379.0" style="-fx-border-color: #333; -fx-border-width: 1 0 1 0;">
-                           <children>
-                              <JFXButton alignment="BASELINE_LEFT" contentDisplay="CENTER" prefHeight="61.0" prefWidth="379.0" text="Song name" textAlignment="JUSTIFY" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label alignment="CENTER" prefHeight="56.0" prefWidth="93.0" text="0:00" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri" size="17.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="36.0" layoutY="372.0" prefHeight="58.0" prefWidth="379.0" style="-fx-border-color: #333; -fx-border-width: 1 0 1 0;">
-                           <children>
-                              <JFXButton alignment="BASELINE_LEFT" contentDisplay="CENTER" prefHeight="61.0" prefWidth="379.0" text="Song name" textAlignment="JUSTIFY" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label alignment="CENTER" prefHeight="56.0" prefWidth="93.0" text="0:00" textFill="#abc6a3">
-                                 <font>
-                                    <Font name="Calibri" size="17.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <TableView fx:id="songTbl" layoutX="36.0" layoutY="456.0" prefHeight="200.0" prefWidth="379.0" style="-fx-background-color: #000;">
-                          <columns>
-                            <TableColumn prefWidth="378.0" text="C1" />
-                          </columns>
-                        </TableView>
+                        <ListView fx:id="songList" layoutX="38.0" layoutY="166.0" prefHeight="414.0" prefWidth="375.0" style="-fx-border-color: #000;" />
                      </children>
                   </Pane>
                </children></AnchorPane>

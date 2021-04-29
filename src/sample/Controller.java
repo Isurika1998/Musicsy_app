@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -42,35 +43,25 @@ public class Controller implements Initializable {
     private Pane songPane;
 
     @FXML
-    private TableView songTbl;
+    private ListView songList;
 
     private int songNumber;
 
     private Media media;
     private MediaPlayer mediaPlayer;
     private int status;
-    private ObservableList<ObservableList> data;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songs = new ArrayList<File>();
         directory = new File("music");
         files = directory.listFiles();
-        data = FXCollections.observableArrayList();
 
-        ObservableList<String> row = FXCollections.observableArrayList();
         if (files != null){
             for (File file : files) {
                 songs.add(file);
-                row.add(file.getName());
-                HBox hb = new HBox();
-                JFXButton b = new JFXButton(file.getName());
-                hb.getChildren().add(b);
-                songPane.getChildren().add(hb);
-
+                songList.getItems().add(file.getName());
             }
-            data.add(row);
-            songTbl.getItems().add(data);
         }
 
         media = new Media(songs.get(songNumber).toURI().toString());
