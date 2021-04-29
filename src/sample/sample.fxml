@@ -56,7 +56,7 @@
                         <Label layoutX="397.0" layoutY="16.0" text="0:00" textFill="WHITE" />
                      </children>
                   </Pane>
-                  <Pane layoutY="-1.0" prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: black;">
+                  <Pane fx:id="songPane" layoutY="-1.0" prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: black;">
                      <children>
                         <HBox layoutX="103.0" layoutY="44.0" prefHeight="50.0" prefWidth="245.0" style="-fx-background-color: #1b3823; -fx-background-radius: 10px;">
                            <children>
@@ -77,9 +77,9 @@
                               </JFXButton>
                            </children>
                         </HBox>
-                        <HBox layoutX="36.0" layoutY="198.0" prefHeight="58.0" prefWidth="379.0" style="-fx-border-color: #333; -fx-border-width: 1 0 1 0;">
+                        <HBox fx:id="songName" layoutX="36.0" layoutY="198.0" prefHeight="58.0" prefWidth="379.0" style="-fx-border-color: #333; -fx-border-width: 1 0 1 0;">
                            <children>
-                              <JFXButton alignment="BASELINE_LEFT" contentDisplay="CENTER" prefHeight="61.0" prefWidth="379.0" text="Song name" textAlignment="JUSTIFY" textFill="#abc6a3">
+                              <JFXButton fx:id="nameBtn" alignment="BASELINE_LEFT" contentDisplay="CENTER" prefHeight="61.0" prefWidth="379.0" text="Song name" textAlignment="JUSTIFY" textFill="#abc6a3">
                                  <font>
                                     <Font name="Calibri Bold" size="18.0" />
                                  </font>
@@ -133,6 +133,11 @@
                               </Label>
                            </children>
                         </HBox>
+                        <TableView fx:id="songTbl" layoutX="36.0" layoutY="456.0" prefHeight="200.0" prefWidth="379.0" style="-fx-background-color: #000;">
+                          <columns>
+                            <TableColumn prefWidth="378.0" text="C1" />
+                          </columns>
+                        </TableView>
                      </children>
                   </Pane>
                </children></AnchorPane>
