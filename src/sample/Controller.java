@@ -16,8 +16,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.MapChangeListener;
 
 public class Controller implements Initializable {
 
@@ -34,7 +33,7 @@ public class Controller implements Initializable {
     private Button playBtn, nextBtn, prevBtn, nameBtn;
 
     @FXML
-    private Label songLbl;
+    private Label songLbl, artistLbl;
 
     @FXML
     private HBox songName;
@@ -49,6 +48,10 @@ public class Controller implements Initializable {
 
     private Media media;
     private MediaPlayer mediaPlayer;
+    private String title;
+    private String artist;
+    private String album;
+
     private int status;
 
     @Override
@@ -65,9 +68,23 @@ public class Controller implements Initializable {
         }
 
         media = new Media(songs.get(songNumber).toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
+        songLbl.setText("");
+        artistLbl.setText("");
+        media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
+            if (c.wasAdded()) {
+                if ("artist".equals(c.getKey())) {
+                    artist = c.getValueAdded().toString();
+                    artistLbl.setText(artist);
+                } else if ("title".equals(c.getKey())) {
+                    title = c.getValueAdded().toString();
+                    songLbl.setText(title);
+                } else if ("album".equals(c.getKey())) {
+                    album = c.getValueAdded().toString();
+                }
+            }
+        });
 
-        songLbl.setText(songs.get(songNumber).getName());
+        mediaPlayer = new MediaPlayer(media);
     }
 
 
@@ -90,9 +107,24 @@ public class Controller implements Initializable {
         }
         mediaPlayer.stop();
         status=0;
+        songLbl.setText("");
+        artistLbl.setText("");
         media = new Media(songs.get(songNumber).toURI().toString());
+        media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
+            if (c.wasAdded()) {
+                if ("artist".equals(c.getKey())) {
+                    artist = c.getValueAdded().toString();
+                    artistLbl.setText(artist);
+                } else if ("title".equals(c.getKey())) {
+                    title = c.getValueAdded().toString();
+                    songLbl.setText(title);
+                } else if ("album".equals(c.getKey())) {
+                    album = c.getValueAdded().toString();
+                }
+            }
+        });
+
         mediaPlayer = new MediaPlayer(media);
-        songLbl.setText(songs.get(songNumber).getName());
         playMedia();
     }
 
@@ -104,9 +136,25 @@ public class Controller implements Initializable {
         }
         mediaPlayer.stop();
         status=0;
+        songLbl.setText("");
+        artistLbl.setText("");
+
         media = new Media(songs.get(songNumber).toURI().toString());
+        media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
+            if (c.wasAdded()) {
+                if ("artist".equals(c.getKey())) {
+                    artist = c.getValueAdded().toString();
+                    artistLbl.setText(artist);
+                } else if ("title".equals(c.getKey())) {
+                    title = c.getValueAdded().toString();
+                    songLbl.setText(title);
+                } else if ("album".equals(c.getKey())) {
+                    album = c.getValueAdded().toString();
+                }
+            }
+        });
+        
         mediaPlayer = new MediaPlayer(media);
-        songLbl.setText(songs.get(songNumber).getName());
         playMedia();
     }
 }

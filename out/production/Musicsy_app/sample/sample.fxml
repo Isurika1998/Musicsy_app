@@ -80,12 +80,17 @@
                         <ListView fx:id="songList" layoutX="38.0" layoutY="166.0" prefHeight="414.0" prefWidth="375.0" style="-fx-border-color: #000;" />
                      </children>
                   </Pane>
+                  <Label fx:id="artistLbl" alignment="CENTER" layoutX="506.0" layoutY="436.0" prefHeight="25.0" prefWidth="338.0" styleClass="songLbl" stylesheets="@styles.css" text="Song name" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="24.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
             <Circle fill="#14563599" layoutX="673.0" layoutY="250.0" radius="100.0" stroke="#14543399" strokeType="INSIDE" />
             <FontAwesomeIcon fill="#86ad86b2" iconName="MUSIC" layoutX="628.0" layoutY="282.0" size="90px" />
-            <Label fx:id="songLbl" layoutX="504.0" layoutY="400.0" prefHeight="25.0" prefWidth="338.0" styleClass="songLbl" stylesheets="@styles.css" text="Song name song name song name song name" textFill="WHITE">
+            <Label fx:id="songLbl" alignment="CENTER" layoutX="504.0" layoutY="400.0" prefHeight="25.0" prefWidth="338.0" styleClass="songLbl" stylesheets="@styles.css" text="Song name" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold Italic" size="27.0" />
                </font>
             </Label>
          </children>
