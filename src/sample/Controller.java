@@ -14,6 +14,7 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.MapChangeListener;
@@ -54,6 +55,10 @@ public class Controller implements Initializable {
 
     private int status;
 
+    PreparedStatement pstmt=null;
+    Connection con=null;
+    ResultSet rs=null;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songs = new ArrayList<File>();
@@ -63,8 +68,21 @@ public class Controller implements Initializable {
         if (files != null){
             for (File file : files) {
                 songs.add(file);
-                songList.getItems().add(file.getName());
+               // songList.getItems().add(file.getName());
             }
+        }
+        try {
+            con=DBUtil.getConnection();
+            String sql = "select * from music";
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
+            if(rs.next()) {
+                songList.getItems().add(rs.getString("song_description"));
+            }else{
+                System.out.println("the end");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         media = new Media(songs.get(songNumber).toURI().toString());
@@ -153,7 +171,7 @@ public class Controller implements Initializable {
                 }
             }
         });
-        
+
         mediaPlayer = new MediaPlayer(media);
         playMedia();
     }
