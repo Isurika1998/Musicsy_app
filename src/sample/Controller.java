@@ -81,7 +81,7 @@ public class Controller implements Initializable {
                 Label lbl = new Label(file.getName());
                 lbl.setTextFill(Color.color(1, 1, 1));
                 lbl.setStyle("-fx-font-family: Calibri; -fx-font-size: 18");
-               playList.add(lbl,0,k);
+               playList.addRow(k,lbl);
                k++;
             }
         }
