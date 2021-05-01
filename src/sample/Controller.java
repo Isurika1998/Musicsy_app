@@ -19,6 +19,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.MapChangeListener;
+import javafx.scene.paint.Color;
 
 public class Controller implements Initializable {
 
@@ -39,6 +40,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Pane pane;
+
+    @FXML
+    private GridPane playList;
 
     @FXML
     private HBox songName;
@@ -69,11 +73,16 @@ public class Controller implements Initializable {
         songs = new ArrayList<File>();
         directory = new File("D:\\Songs");
         files = directory.listFiles();
-
+        int k=0;
         if (files != null){
+
             for (File file : files) {
                 songs.add(file);
-               // songList.getItems().add(file.getName());
+                Label lbl = new Label(file.getName());
+                lbl.setTextFill(Color.color(1, 1, 1));
+                lbl.setStyle("-fx-font-family: Calibri; -fx-font-size: 18");
+               playList.add(lbl,0,k);
+               k++;
             }
         }
         /*try {
