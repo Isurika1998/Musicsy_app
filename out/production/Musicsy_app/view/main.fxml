@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #070707;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="300.0" style="-fx-border-width: 0px 1px 0px 0px; -fx-border-color: #333;">
+         <children>
+            <JFXTextField alignment="CENTER" focusColor="BLACK" layoutX="34.0" layoutY="100.0" prefHeight="36.0" prefWidth="232.0" style="-fx-border-color: #333; -fx-border-radius: 100%; -fx-background-color: #333; -fx-background-radius: 25px;" unFocusColor="BLACK" />
+            <FontAwesomeIcon fill="#a168a1" iconName="SEARCH" layoutX="231.0" layoutY="125.0" size="20px" wrappingWidth="18.571428298950195" />
+         </children>
+      </Pane>
+      <Pane layoutX="300.0" layoutY="765.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="1000.0">
+         <children>
+            <ProgressBar fx:id="progressBar" layoutX="185.0" layoutY="29.0" prefHeight="18.0" prefWidth="749.0" progress="0.11" />
+            <Label fx:id="time1Lbl" layoutX="148.0" layoutY="30.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="songLbl" layoutX="146.0" layoutY="76.0" prefHeight="22.0" prefWidth="290.0" text="Song Name" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="time2Lbl1" layoutX="946.0" layoutY="30.0" text="0:00" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="artistLbl" layoutX="146.0" layoutY="98.0" prefHeight="20.0" prefWidth="290.0" text="Artist Name" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <FontAwesomeIcon fill="WHITE" iconName="PLAY" layoutX="554.0" layoutY="105.0" size="20px" wrappingWidth="18.5714111328125" />
+            <JFXButton fx:id="playBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="540.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#playMedia" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: white; -fx-border-radius: 100%;" text="." textFill="#ffffff00">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIcon fill="#e4dbdb" iconName="ANGLE_LEFT" layoutX="501.0" layoutY="110.0" size="35px" wrappingWidth="18.5714111328125" />
+            <JFXButton fx:id="prevBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="494.0" layoutY="83.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#prevMedia" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-border-radius: 100%;" text="." textFill="TRANSPARENT">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <FontAwesomeIcon fill="WHITE" iconName="VOLUME_UP" layoutX="826.0" layoutY="102.0" size="20px" />
+            <FontAwesomeIcon fill="#e4dbdb" iconName="ANGLE_RIGHT" layoutX="608.0" layoutY="110.0" size="35px" wrappingWidth="18.5714111328125" />
+            <JFXButton fx:id="nextBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="598.0" layoutY="83.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nextMedia" prefHeight="30.0" prefWidth="30.0" style="-fx-border-color: black; -fx-border-radius: 100%;" text="." textFill="TRANSPARENT">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Slider layoutX="854.0" layoutY="88.0" prefHeight="14.0" prefWidth="120.0" value="30.0" />
+            <Pane fx:id="pane" prefHeight="135.0" prefWidth="135.0" style="-fx-border-color: white;" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

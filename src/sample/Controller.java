@@ -7,8 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -35,6 +36,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Label songLbl, artistLbl;
+
+    @FXML
+    private Pane pane;
 
     @FXML
     private HBox songName;
@@ -71,7 +75,7 @@ public class Controller implements Initializable {
                // songList.getItems().add(file.getName());
             }
         }
-        try {
+        /*try {
             con=DBUtil.getConnection();
             String sql = "select * from music";
             Statement st = con.createStatement();
@@ -83,11 +87,13 @@ public class Controller implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
         media = new Media(songs.get(songNumber).toURI().toString());
         songLbl.setText("");
         artistLbl.setText("");
+        Image image = new Image("assets/song-cover.jpeg", 100, 100, false, false);
+
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             if (c.wasAdded()) {
                 if ("artist".equals(c.getKey())) {
@@ -98,7 +104,14 @@ public class Controller implements Initializable {
                     songLbl.setText(title);
                 } else if ("album".equals(c.getKey())) {
                     album = c.getValueAdded().toString();
+                } else if ("image".equals(c.getKey())) {
+                    Image i = (Image)c.getValueAdded();
+                    ImageView iv = new ImageView(i);
+                    iv.setFitWidth(135);
+                    iv.setFitHeight(135);
+                    pane.getChildren().add(iv);
                 }
+
             }
         });
 

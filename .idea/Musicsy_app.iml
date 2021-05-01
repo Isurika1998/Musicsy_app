@@ -24,5 +24,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="fontawesomefx-8.1" level="project" />
+    <orderEntry type="library" name="jid3lib-0.6.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="mp3agic-0.9.0" level="project" />
   </component>
 </module>

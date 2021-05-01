@@ -1,3 +1,47 @@
+#pane{
+    -fx-background-image: url("../assets/forest_6.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 135 135;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+    -fx-border-color: white;
+}
+
+/* ----------- progress bar css ----------- */
+.progress-bar .track {
+    -fx-background-color: #333;
+    -fx-background-insets:  0, 1;
+}
+
+.progress-bar:disabled {
+    -fx-opacity: -fx-disabled-opacity;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: purple;
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0px;
+}
+
+/* ----------- sould slider css ----------- */
+
+.slider .track {
+    -fx-pref-height:5;
+    -fx-background-color: #333;
+}
+
+.slider:vertical .track {
+    -fx-pref-width:20;
+}
+
+.slider .thumb {
+    -fx-pref-height: 12;
+    -fx-pref-width: 12;
+    -fx-background-color: purple;
+}
+
+/* -----------  ----------- */
+
 .list-view .list-cell {
     -fx-background-color: black;
     -fx-text-fill: white;
@@ -16,4 +60,5 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
+
 
