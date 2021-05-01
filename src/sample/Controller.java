@@ -58,6 +58,7 @@ public class Controller implements Initializable {
     private String album;
 
     private int status;
+    private int imgFlag;
 
     PreparedStatement pstmt=null;
     Connection con=null;
@@ -66,7 +67,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         songs = new ArrayList<File>();
-        directory = new File("music");
+        directory = new File("D:\\Songs");
         files = directory.listFiles();
 
         if (files != null){
@@ -92,7 +93,7 @@ public class Controller implements Initializable {
         media = new Media(songs.get(songNumber).toURI().toString());
         songLbl.setText("");
         artistLbl.setText("");
-        Image image = new Image("assets/song-cover.jpeg", 100, 100, false, false);
+        //Image image = new Image("assets/song-cover.jpeg", 100, 100, false, false);
 
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             if (c.wasAdded()) {
@@ -104,8 +105,16 @@ public class Controller implements Initializable {
                     songLbl.setText(title);
                 } else if ("album".equals(c.getKey())) {
                     album = c.getValueAdded().toString();
-                } else if ("image".equals(c.getKey())) {
+                }else if ("image".equals(c.getKey())) {
+                    imgFlag = 1;
                     Image i = (Image)c.getValueAdded();
+                    ImageView iv = new ImageView(i);
+                    iv.setFitWidth(135);
+                    iv.setFitHeight(135);
+                    pane.getChildren().add(iv);
+                }
+                if(imgFlag == 0){
+                    Image i = new Image("assets/default-song-cover.png");
                     ImageView iv = new ImageView(i);
                     iv.setFitWidth(135);
                     iv.setFitHeight(135);
@@ -131,6 +140,7 @@ public class Controller implements Initializable {
     }
 
     public void nextMedia(){
+        imgFlag = 0;
         if(songNumber < songs.size()-1){
             songNumber++;
         }else {
@@ -151,6 +161,20 @@ public class Controller implements Initializable {
                     songLbl.setText(title);
                 } else if ("album".equals(c.getKey())) {
                     album = c.getValueAdded().toString();
+                }else if ("image".equals(c.getKey())) {
+                    imgFlag = 1;
+                    Image i = (Image)c.getValueAdded();
+                    ImageView iv = new ImageView(i);
+                    iv.setFitWidth(135);
+                    iv.setFitHeight(135);
+                    pane.getChildren().add(iv);
+                }
+                if(imgFlag == 0){
+                    Image i = new Image("assets/default-song-cover.png");
+                    ImageView iv = new ImageView(i);
+                    iv.setFitWidth(135);
+                    iv.setFitHeight(135);
+                    pane.getChildren().add(iv);
                 }
             }
         });
@@ -160,6 +184,7 @@ public class Controller implements Initializable {
     }
 
     public void prevMedia(){
+        imgFlag = 0;
         if(songNumber > 0){
             songNumber--;
         }else {
@@ -181,7 +206,22 @@ public class Controller implements Initializable {
                     songLbl.setText(title);
                 } else if ("album".equals(c.getKey())) {
                     album = c.getValueAdded().toString();
+                }else if ("image".equals(c.getKey())) {
+                    imgFlag = 1;
+                    Image i = (Image)c.getValueAdded();
+                    ImageView iv = new ImageView(i);
+                    iv.setFitWidth(135);
+                    iv.setFitHeight(135);
+                    pane.getChildren().add(iv);
                 }
+                if(imgFlag == 0){
+                    Image i = new Image("assets/default-song-cover.png");
+                    ImageView iv = new ImageView(i);
+                    iv.setFitWidth(135);
+                    iv.setFitHeight(135);
+                    pane.getChildren().add(iv);
+                }
+
             }
         });
 
