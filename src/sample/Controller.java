@@ -2,7 +2,9 @@ package sample;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -14,6 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,6 +43,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Pane pane;
+
+    @FXML
+    private VBox pnItems = null;
 
     @FXML
     private GridPane playList;
@@ -70,19 +76,46 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         songs = new ArrayList<File>();
         directory = new File("D:\\Songs");
         files = directory.listFiles();
-        int k=0;
+        int count=0;
         if (files != null){
 
             for (File file : files) {
                 songs.add(file);
-                Label lbl = new Label(file.getName());
+                count++;
+                /*Label lbl = new Label(file.getName());
                 lbl.setTextFill(Color.color(1, 1, 1));
                 lbl.setStyle("-fx-font-family: Calibri; -fx-font-size: 18");
                playList.addRow(k,lbl);
-               k++;
+               k++;*/
+            }
+        }
+        Node[] nodes = new Node[count];
+        int playListSongNo = 0;
+        for (File file : files) {
+            try {
+
+                final int j = playListSongNo;
+                nodes[playListSongNo] = FXMLLoader.load(getClass().getResource("../view/item.fxml"));
+                Label playlistSong = (Label) nodes[playListSongNo].lookup("#song");
+                playlistSong.setText(file.getName());
+
+                //give the items some effect
+
+                nodes[playListSongNo].setOnMouseEntered(event -> {
+                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                });
+                nodes[playListSongNo].setOnMouseExited(event -> {
+                    nodes[j].setStyle("-fx-background-color : #02030A");
+                });
+                pnItems.getChildren().add(nodes[playListSongNo]);
+                playListSongNo++;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         /*try {

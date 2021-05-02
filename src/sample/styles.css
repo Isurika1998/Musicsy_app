@@ -62,3 +62,49 @@
 }
 
 
+
+
+#pnItems .button
+{
+    -fx-background-color : black;
+    -fx-text-fill : #e7e5e5;
+}
+#pnItems .button:hover{
+    -fx-background-color : #4d004d;
+}
+#pnItems .button:pressed
+{
+    -fx-background-color : #990099;
+}
+
+.scroll-pane {
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+#pnItems .increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #4d004d;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+

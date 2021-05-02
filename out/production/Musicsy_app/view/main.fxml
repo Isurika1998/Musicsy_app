@@ -67,21 +67,14 @@
             <Pane fx:id="pane" prefHeight="135.0" prefWidth="135.0" style="-fx-border-color: white;" />
          </children>
       </Pane>
-      <ScrollPane layoutX="336.0" layoutY="267.0" prefHeight="446.0" prefWidth="924.0" style="-fx-background-color: black;">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="443.0" prefWidth="925.0" style="-fx-background-color: black;">
-               <children>
-                  <GridPane fx:id="playList" gridLinesVisible="true" hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="924.0" vgap="30.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.rightAnchor="1.0">
-                    <rowConstraints>
-                      <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="362.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <padding>
-                        <Insets bottom="20.0" top="20.0" />
-                     </padding>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-        </content>
+      <ScrollPane layoutX="337.0" layoutY="238.0" prefHeight="470.0" prefWidth="932.0">
+         <content>
+            <VBox fx:id="pnItems" prefHeight="466.0" prefWidth="930.0" spacing="5.0" style="-fx-background-color: #02030A;">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
       </ScrollPane>
    </children>
 </AnchorPane>
