@@ -139,8 +139,15 @@ public class Controller implements Initializable {
                     nodes[j].setStyle("-fx-background-color : #4d004d");
                 });
                 nodes[playListSongNo].setOnMouseExited(event -> {
-                    nodes[j].setStyle("-fx-background-color : #02030A");
+                    if(j%2==0){
+                        nodes[j].setStyle("-fx-background-color : #111");
+                    }else {
+                        nodes[j].setStyle("-fx-background-color : black");
+                    }
                 });
+                if(j%2==0){
+                    nodes[j].setStyle("-fx-background-color : #111");
+                }
                 pnItems.getChildren().add(nodes[playListSongNo]);
                 playListSongNo++;
 
