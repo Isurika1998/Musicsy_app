@@ -1,6 +1,7 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -61,7 +62,7 @@ public class Controller implements Initializable {
 
     private int songNumber;
 
-    private Media media;
+    private Media media,playListMedia;
     private MediaPlayer mediaPlayer;
     private String title;
     private String artist;
@@ -69,6 +70,7 @@ public class Controller implements Initializable {
 
     private int status;
     private int imgFlag;
+
 
     PreparedStatement pstmt=null;
     Connection con=null;
@@ -87,33 +89,61 @@ public class Controller implements Initializable {
             for (File file : files) {
                 songs.add(file);
                 count++;
-                /*Label lbl = new Label(file.getName());
-                lbl.setTextFill(Color.color(1, 1, 1));
-                lbl.setStyle("-fx-font-family: Calibri; -fx-font-size: 18");
-               playList.addRow(k,lbl);
-               k++;*/
             }
         }
         Node[] nodes = new Node[count];
+        int[] playlistImgFlag = new int[count];
         int playListSongNo = 0;
+
         for (File file : files) {
             try {
-
                 final int j = playListSongNo;
                 nodes[playListSongNo] = FXMLLoader.load(getClass().getResource("../view/item.fxml"));
-                Label playlistSong = (Label) nodes[playListSongNo].lookup("#song");
-                playlistSong.setText(file.getName());
+
+                playListMedia = new Media(songs.get(playListSongNo).toURI().toString());
+                int[] finalPlaylistImgFlag = playlistImgFlag;
+                playListMedia.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
+                    if (c.wasAdded()) {
+                        if ("artist".equals(c.getKey())) {
+                            Label playlistArtist = (Label) nodes[j].lookup("#artist");
+                            playlistArtist.setText(c.getValueAdded().toString());
+                        } else if ("title".equals(c.getKey())) {
+                            Label playlistSong = (Label) nodes[j].lookup("#song");
+                            playlistSong.setText(j+". "+c.getValueAdded().toString());
+                        } else if ("album".equals(c.getKey())) {
+                            Label playlistAlbum = (Label) nodes[j].lookup("#album");
+                            playlistAlbum.setText(c.getValueAdded().toString());
+                        }else if ("image".equals(c.getKey())) {
+                            finalPlaylistImgFlag[j] = 1;
+                            Image i = (Image)c.getValueAdded();
+                            ImageView iv = new ImageView(i);
+                            iv.setFitWidth(60);
+                            iv.setFitHeight(60);
+                            Pane p = (Pane) nodes[j].lookup("#cover");
+                            p.getChildren().add(iv);
+                        }
+                        if(finalPlaylistImgFlag[j] == 0){
+                            Image i = new Image("assets/default-song-cover.png");
+                            ImageView iv = new ImageView(i);
+                            iv.setFitWidth(60);
+                            iv.setFitHeight(60);
+                            Pane p = (Pane) nodes[j].lookup("#cover");
+                            p.getChildren().add(iv);
+                        }
+
+                    }
+                });
 
                 //give the items some effect
-
                 nodes[playListSongNo].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                    nodes[j].setStyle("-fx-background-color : #4d004d");
                 });
                 nodes[playListSongNo].setOnMouseExited(event -> {
                     nodes[j].setStyle("-fx-background-color : #02030A");
                 });
                 pnItems.getChildren().add(nodes[playListSongNo]);
                 playListSongNo++;
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

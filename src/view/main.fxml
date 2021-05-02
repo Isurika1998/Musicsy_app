@@ -13,7 +13,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #070707;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="300.0" style="-fx-border-width: 0px 1px 0px 0px; -fx-border-color: #333;">
          <children>
@@ -67,9 +67,9 @@
             <Pane fx:id="pane" prefHeight="135.0" prefWidth="135.0" style="-fx-border-color: white;" />
          </children>
       </Pane>
-      <ScrollPane layoutX="337.0" layoutY="238.0" prefHeight="470.0" prefWidth="932.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="337.0" layoutY="238.0" prefHeight="470.0" prefWidth="932.0">
          <content>
-            <VBox fx:id="pnItems" prefHeight="466.0" prefWidth="930.0" spacing="5.0" style="-fx-background-color: #02030A;">
+            <VBox fx:id="pnItems" prefHeight="471.0" prefWidth="930.0" spacing="5.0" style="-fx-background-color: #02030A;">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
