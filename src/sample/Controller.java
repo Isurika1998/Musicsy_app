@@ -374,6 +374,10 @@ public class Controller implements Initializable {
                         (int)time.toSeconds() % 3600);
             },
         mediaPlayer.currentTimeProperty()));
+
+        Duration endTime = media.getDuration();
+        time2Lbl.setText(String.format("%02d:%02d", (int) endTime.toMinutes() % 60, (int)endTime.toSeconds() % 3600));
+
     }
 
     public void cancelTimer() {
