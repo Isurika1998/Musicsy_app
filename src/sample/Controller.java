@@ -1,15 +1,14 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -60,6 +59,9 @@ public class Controller implements Initializable {
     @FXML
     private ListView songList;
 
+    @FXML
+    private Slider volumeSlider;
+
     private int songNumber;
 
     private Media media,playListMedia;
@@ -98,10 +100,14 @@ public class Controller implements Initializable {
         for (File file : files) {
             try {
                 final int j = playListSongNo;
+
+                //add playlist songs
                 nodes[playListSongNo] = FXMLLoader.load(getClass().getResource("../view/item.fxml"));
 
                 playListMedia = new Media(songs.get(playListSongNo).toURI().toString());
                 int[] finalPlaylistImgFlag = playlistImgFlag;
+
+                // get metadata
                 playListMedia.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
                     if (c.wasAdded()) {
                         if ("artist".equals(c.getKey())) {
@@ -169,6 +175,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }*/
 
+        // show now playing media
         media = new Media(songs.get(songNumber).toURI().toString());
         songLbl.setText("");
         artistLbl.setText("");
@@ -204,6 +211,16 @@ public class Controller implements Initializable {
         });
 
         mediaPlayer = new MediaPlayer(media);
+
+        //code for volume changing
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+
+                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            }
+        });
     }
 
 
