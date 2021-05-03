@@ -24,7 +24,7 @@
       <Pane layoutX="300.0" layoutY="765.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="1000.0">
          <children>
             <ProgressBar fx:id="progressBar" layoutX="185.0" layoutY="29.0" prefHeight="18.0" prefWidth="749.0" progress="0.0" />
-            <Label fx:id="time1Lbl" layoutX="148.0" layoutY="30.0" text="0:00" textFill="WHITE">
+            <Label fx:id="time1Lbl" layoutX="146.0" layoutY="30.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="time2Lbl" layoutX="946.0" layoutY="30.0" text="0:00" textFill="WHITE">
+            <Label fx:id="time2Lbl" layoutX="941.0" layoutY="30.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

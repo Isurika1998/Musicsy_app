@@ -1,6 +1,7 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableMap;
@@ -26,6 +27,7 @@ import java.util.TimerTask;
 
 import javafx.collections.MapChangeListener;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class Controller implements Initializable {
 
@@ -347,7 +349,6 @@ public class Controller implements Initializable {
     public void beginTimer() {
 
         timer = new Timer();
-
         task = new TimerTask() {
 
             public void run() {
@@ -356,7 +357,6 @@ public class Controller implements Initializable {
                 double current = mediaPlayer.getCurrentTime().toSeconds();
                 double end = media.getDuration().toSeconds();
                 progressBar.setProgress(current/end);
-
                 if(current/end == 1) {
 
                     cancelTimer();
@@ -365,6 +365,15 @@ public class Controller implements Initializable {
         };
 
         timer.scheduleAtFixedRate(task, 0, 1000);
+
+        time1Lbl.textProperty().bind(
+            Bindings.createStringBinding(() -> {
+                Duration time = mediaPlayer.getCurrentTime();
+                return String.format("%02d:%02d",
+                        (int) time.toMinutes() % 60,
+                        (int)time.toSeconds() % 3600);
+            },
+        mediaPlayer.currentTimeProperty()));
     }
 
     public void cancelTimer() {
