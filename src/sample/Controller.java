@@ -21,6 +21,9 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.collections.MapChangeListener;
 import javafx.scene.paint.Color;
 
@@ -39,7 +42,7 @@ public class Controller implements Initializable {
     private Button playBtn, nextBtn, prevBtn, nameBtn;
 
     @FXML
-    private Label songLbl, artistLbl;
+    private Label songLbl, artistLbl, time1Lbl, time2Lbl;
 
     @FXML
     private Pane pane;
@@ -62,6 +65,9 @@ public class Controller implements Initializable {
     @FXML
     private Slider volumeSlider;
 
+    @FXML
+    private ProgressBar progressBar;
+
     private int songNumber;
 
     private Media media,playListMedia;
@@ -70,8 +76,13 @@ public class Controller implements Initializable {
     private String artist;
     private String album;
 
+    private Timer timer;
+    private TimerTask task;
+    private boolean running;
+
     private int status;
     private int imgFlag;
+
 
 
     PreparedStatement pstmt=null;
@@ -228,9 +239,11 @@ public class Controller implements Initializable {
         if (status == 0){
             mediaPlayer.play();
             status=1;
+            beginTimer();
         }else if(status == 1){
             mediaPlayer.pause();
             status=0;
+            cancelTimer();
         }
 
     }
@@ -243,6 +256,9 @@ public class Controller implements Initializable {
             songNumber = 0;
         }
         mediaPlayer.stop();
+        if(running) {
+            cancelTimer();
+        }
         status=0;
         songLbl.setText("");
         artistLbl.setText("");
@@ -287,6 +303,9 @@ public class Controller implements Initializable {
             songNumber = songs.size() - 1;
         }
         mediaPlayer.stop();
+        if(running) {
+            cancelTimer();
+        }
         status=0;
         songLbl.setText("");
         artistLbl.setText("");
@@ -323,5 +342,34 @@ public class Controller implements Initializable {
 
         mediaPlayer = new MediaPlayer(media);
         playMedia();
+    }
+
+    public void beginTimer() {
+
+        timer = new Timer();
+
+        task = new TimerTask() {
+
+            public void run() {
+
+                running = true;
+                double current = mediaPlayer.getCurrentTime().toSeconds();
+                double end = media.getDuration().toSeconds();
+                progressBar.setProgress(current/end);
+
+                if(current/end == 1) {
+
+                    cancelTimer();
+                }
+            }
+        };
+
+        timer.scheduleAtFixedRate(task, 0, 1000);
+    }
+
+    public void cancelTimer() {
+
+        running = false;
+        timer.cancel();
     }
 }
