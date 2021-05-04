@@ -33,40 +33,21 @@ public class Controller implements Initializable {
 
     @FXML
     private File directory;
-
     @FXML
     private File[] files;
-
     @FXML
     private ArrayList<File> songs;
 
     @FXML
     private Button playBtn, nextBtn, prevBtn, nameBtn;
-
     @FXML
     private Label songLbl, artistLbl, time1Lbl, time2Lbl;
-
     @FXML
     private Pane pane;
-
     @FXML
     private VBox pnItems = null;
-
-    @FXML
-    private GridPane playList;
-
-    @FXML
-    private HBox songName;
-
-    @FXML
-    private Pane songPane;
-
-    @FXML
-    private ListView songList;
-
     @FXML
     private Slider volumeSlider;
-
     @FXML
     private ProgressBar progressBar;
 
@@ -86,7 +67,7 @@ public class Controller implements Initializable {
     private int imgFlag;
 
 
-
+    //for db connection
     PreparedStatement pstmt=null;
     Connection con=null;
     ResultSet rs=null;
@@ -360,6 +341,7 @@ public class Controller implements Initializable {
                 if(current/end == 1) {
 
                     cancelTimer();
+                   // nextMedia();
                 }
             }
         };
