@@ -168,12 +168,22 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }*/
 
-        // show now playing media
-        media = new Media(songs.get(songNumber).toURI().toString());
-        songLbl.setText("");
-        artistLbl.setText("");
-        //Image image = new Image("assets/song-cover.jpeg", 100, 100, false, false);
+        getMetadata(songNumber);
 
+        //code for volume changing
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+
+                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            }
+        });
+    }
+
+
+    public void getMetadata(int num){
+        media = new Media(songs.get(num).toURI().toString());
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             if (c.wasAdded()) {
                 if ("artist".equals(c.getKey())) {
@@ -199,21 +209,11 @@ public class Controller implements Initializable {
                     iv.setFitHeight(135);
                     pane.getChildren().add(iv);
                 }
-
             }
         });
 
         mediaPlayer = new MediaPlayer(media);
 
-        //code for volume changing
-        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-
-                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
-            }
-        });
     }
 
 
@@ -244,36 +244,7 @@ public class Controller implements Initializable {
         status=0;
        // songLbl.setText("");
        // artistLbl.setText("");
-        media = new Media(songs.get(songNumber).toURI().toString());
-        media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
-            if (c.wasAdded()) {
-                if ("artist".equals(c.getKey())) {
-                    artist = c.getValueAdded().toString();
-                    artistLbl.setText(artist);
-                } else if ("title".equals(c.getKey())) {
-                    title = c.getValueAdded().toString();
-                    songLbl.setText(title);
-                } else if ("album".equals(c.getKey())) {
-                    album = c.getValueAdded().toString();
-                }else if ("image".equals(c.getKey())) {
-                    imgFlag = 1;
-                    Image i = (Image)c.getValueAdded();
-                    ImageView iv = new ImageView(i);
-                    iv.setFitWidth(135);
-                    iv.setFitHeight(135);
-                    pane.getChildren().add(iv);
-                }
-                if(imgFlag == 0){
-                    Image i = new Image("assets/default-song-cover.png");
-                    ImageView iv = new ImageView(i);
-                    iv.setFitWidth(135);
-                    iv.setFitHeight(135);
-                    pane.getChildren().add(iv);
-                }
-            }
-        });
-
-        mediaPlayer = new MediaPlayer(media);
+        getMetadata(songNumber);
         playMedia();
     }
 
@@ -289,40 +260,7 @@ public class Controller implements Initializable {
             cancelTimer();
         }
         status=0;
-        songLbl.setText("");
-        artistLbl.setText("");
-
-        media = new Media(songs.get(songNumber).toURI().toString());
-        media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
-            if (c.wasAdded()) {
-                if ("artist".equals(c.getKey())) {
-                    artist = c.getValueAdded().toString();
-                    artistLbl.setText(artist);
-                } else if ("title".equals(c.getKey())) {
-                    title = c.getValueAdded().toString();
-                    songLbl.setText(title);
-                } else if ("album".equals(c.getKey())) {
-                    album = c.getValueAdded().toString();
-                }else if ("image".equals(c.getKey())) {
-                    imgFlag = 1;
-                    Image i = (Image)c.getValueAdded();
-                    ImageView iv = new ImageView(i);
-                    iv.setFitWidth(135);
-                    iv.setFitHeight(135);
-                    pane.getChildren().add(iv);
-                }
-                if(imgFlag == 0){
-                    Image i = new Image("assets/default-song-cover.png");
-                    ImageView iv = new ImageView(i);
-                    iv.setFitWidth(135);
-                    iv.setFitHeight(135);
-                    pane.getChildren().add(iv);
-                }
-
-            }
-        });
-
-        mediaPlayer = new MediaPlayer(media);
+        getMetadata(songNumber);
         playMedia();
     }
 
