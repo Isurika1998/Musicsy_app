@@ -63,8 +63,7 @@ public class Controller implements Initializable {
     private TimerTask task;
     private boolean running;
 
-    private int status;
-    private int imgFlag;
+    private int status, imgFlag, nextMediaIndicator;
 
 
     //for db connection
@@ -243,8 +242,8 @@ public class Controller implements Initializable {
             cancelTimer();
         }
         status=0;
-        songLbl.setText("");
-        artistLbl.setText("");
+       // songLbl.setText("");
+       // artistLbl.setText("");
         media = new Media(songs.get(songNumber).toURI().toString());
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             if (c.wasAdded()) {
@@ -328,7 +327,6 @@ public class Controller implements Initializable {
     }
 
     public void beginTimer() {
-
         timer = new Timer();
         task = new TimerTask() {
 
@@ -339,16 +337,15 @@ public class Controller implements Initializable {
                 double end = media.getDuration().toSeconds();
                 progressBar.setProgress(current/end);
                 if(current/end == 1) {
-
+                    nextMediaIndicator=1;
                     cancelTimer();
-                   // nextMedia();
                 }
             }
         };
 
         timer.scheduleAtFixedRate(task, 0, 1000);
 
-        time1Lbl.textProperty().bind(
+        /*time1Lbl.textProperty().bind(
             Bindings.createStringBinding(() -> {
                 Duration time = mediaPlayer.getCurrentTime();
                 return String.format("%02d:%02d",
@@ -358,13 +355,18 @@ public class Controller implements Initializable {
         mediaPlayer.currentTimeProperty()));
 
         Duration endTime = media.getDuration();
-        time2Lbl.setText(String.format("%02d:%02d", (int) endTime.toMinutes() % 60, (int)endTime.toSeconds() % 3600));
+        time2Lbl.setText(String.format("%02d:%02d", (int) endTime.toMinutes() % 60, (int)endTime.toSeconds() % 3600));*/
 
     }
 
     public void cancelTimer() {
-
         running = false;
         timer.cancel();
+        if(nextMediaIndicator==1){
+            nextMediaIndicator=0;
+            task.cancel();
+            nextMedia();
+        }
     }
+
 }
