@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -65,6 +66,7 @@ public class Controller implements Initializable {
 
     private int status, imgFlag, nextMediaIndicator;
     private String[][] playlist;
+    private final DecimalFormat formatter = new DecimalFormat("00.00");
 
 
     //for db connection
@@ -210,17 +212,28 @@ public class Controller implements Initializable {
                 }
             }
         });
-
         mediaPlayer = new MediaPlayer(media);
 
     }
 
 
-    public void playMedia(){
+    public void playMedia() {
         if (status == 0){
-            mediaPlayer.play();
-            status=1;
-            beginTimer();
+                mediaPlayer.play();
+                mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+                        time1Lbl.setText(String.valueOf(formatter.format(newValue.toMinutes())));
+                    }
+                });
+                status=1;
+                beginTimer();
+
+                Duration totalTime = media.getDuration();
+                time2Lbl.setText(" / " + String.valueOf(formatter.format(Math.floor(totalTime.toSeconds()))));
+
+
+            //time2Lbl.setText(String.format("%02d:%02d", (int) endTime.toMinutes() % 60, (int)endTime.toSeconds() % 60));
         }else if(status == 1){
             mediaPlayer.pause();
             status=0;
@@ -281,7 +294,6 @@ public class Controller implements Initializable {
         };
 
         timer.scheduleAtFixedRate(task, 0, 1000);
-
         /*time1Lbl.textProperty().bind(
             Bindings.createStringBinding(() -> {
                 Duration time = mediaPlayer.getCurrentTime();
@@ -291,8 +303,7 @@ public class Controller implements Initializable {
             },
         mediaPlayer.currentTimeProperty()));
 
-        Duration endTime = media.getDuration();
-        time2Lbl.setText(String.format("%02d:%02d", (int) endTime.toMinutes() % 60, (int)endTime.toSeconds() % 3600));*/
+         */
 
     }
 
