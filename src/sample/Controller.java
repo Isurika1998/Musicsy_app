@@ -64,6 +64,7 @@ public class Controller implements Initializable {
     private boolean running;
 
     private int status, imgFlag, nextMediaIndicator;
+    private String[][] playlist;
 
 
     //for db connection
@@ -88,6 +89,7 @@ public class Controller implements Initializable {
         }
         Node[] nodes = new Node[count];
         int[] playlistImgFlag = new int[count];
+        playlist = new String[count][4];
         int playListSongNo = 0;
 
         for (File file : files) {
@@ -106,12 +108,15 @@ public class Controller implements Initializable {
                         if ("artist".equals(c.getKey())) {
                             Label playlistArtist = (Label) nodes[j].lookup("#artist");
                             playlistArtist.setText(c.getValueAdded().toString());
+                            playlist[j][0]=c.getValueAdded().toString();
                         } else if ("title".equals(c.getKey())) {
                             Label playlistSong = (Label) nodes[j].lookup("#song");
                             playlistSong.setText(j+". "+c.getValueAdded().toString());
+                            playlist[j][1]=c.getValueAdded().toString();
                         } else if ("album".equals(c.getKey())) {
                             Label playlistAlbum = (Label) nodes[j].lookup("#album");
                             playlistAlbum.setText(c.getValueAdded().toString());
+                            playlist[j][2]=c.getValueAdded().toString();
                         }else if ("image".equals(c.getKey())) {
                             finalPlaylistImgFlag[j] = 1;
                             Image i = (Image)c.getValueAdded();
@@ -185,16 +190,10 @@ public class Controller implements Initializable {
     public void getMetadata(int num){
         media = new Media(songs.get(num).toURI().toString());
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
+            songLbl.setText(playlist[num][1]);
+            artistLbl.setText(playlist[num][0]);
             if (c.wasAdded()) {
-                if ("artist".equals(c.getKey())) {
-                    artist = c.getValueAdded().toString();
-                    artistLbl.setText(artist);
-                } else if ("title".equals(c.getKey())) {
-                    title = c.getValueAdded().toString();
-                    songLbl.setText(title);
-                } else if ("album".equals(c.getKey())) {
-                    album = c.getValueAdded().toString();
-                }else if ("image".equals(c.getKey())) {
+                if ("image".equals(c.getKey())) {
                     imgFlag = 1;
                     Image i = (Image)c.getValueAdded();
                     ImageView iv = new ImageView(i);
