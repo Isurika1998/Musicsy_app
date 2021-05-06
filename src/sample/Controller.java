@@ -223,14 +223,13 @@ public class Controller implements Initializable {
                 mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
                     @Override
                     public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-                        time1Lbl.setText(String.valueOf(formatter.format(newValue.toMinutes())));
+                        time1Lbl.setText(String.format("%02d:%02d", (int) newValue.toMinutes() % 60, (int)newValue.toSeconds() % 60));
+                        Duration totalTime = media.getDuration();
+                        time2Lbl.setText(String.format("%02d:%02d", (int) totalTime.toMinutes() % 60, (int)totalTime.toSeconds() % 60));
                     }
                 });
                 status=1;
                 beginTimer();
-
-                Duration totalTime = media.getDuration();
-                time2Lbl.setText(" / " + String.valueOf(formatter.format(Math.floor(totalTime.toSeconds()))));
 
 
             //time2Lbl.setText(String.format("%02d:%02d", (int) endTime.toMinutes() % 60, (int)endTime.toSeconds() % 60));
