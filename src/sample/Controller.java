@@ -68,8 +68,6 @@ public class Controller implements Initializable {
 
     //for db connection
     PreparedStatement pstmt=null;
-    Connection con=null;
-    ResultSet rs=null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -159,14 +157,11 @@ public class Controller implements Initializable {
             }
         }
         try {
-            con=DBUtil.getConnection();
-            String sql = "select * from favourites";
+            Connection con=DBUtil.getConnection();
             Statement st = con.createStatement();
-            rs = st.executeQuery(sql);
-            if(rs.next()) {
+            ResultSet rs = st.executeQuery("SELECT id,song_name FROM favourites");
+            while (rs.next()) {
                 System.out.println(rs.getInt("id")+" "+rs.getString("song_name"));
-            }else{
-                System.out.println("the end");
             }
         } catch (SQLException e) {
             e.printStackTrace();
