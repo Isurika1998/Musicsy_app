@@ -1,10 +1,8 @@
 package sample;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.beans.binding.Bindings;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,7 +25,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.collections.MapChangeListener;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Controller implements Initializable {
@@ -161,19 +158,19 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         }
-        /*try {
+        try {
             con=DBUtil.getConnection();
-            String sql = "select * from music";
+            String sql = "select * from favourites";
             Statement st = con.createStatement();
             rs = st.executeQuery(sql);
             if(rs.next()) {
-                songList.getItems().add(rs.getString("song_description"));
+                System.out.println(rs.getInt("id")+" "+rs.getString("song_name"));
             }else{
                 System.out.println("the end");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
 
         getMetadata(songNumber);
 
@@ -231,14 +228,11 @@ public class Controller implements Initializable {
                 status=1;
                 beginTimer();
 
-
-            //time2Lbl.setText(String.format("%02d:%02d", (int) endTime.toMinutes() % 60, (int)endTime.toSeconds() % 60));
         }else if(status == 1){
             mediaPlayer.pause();
             status=0;
             cancelTimer();
         }
-
     }
 
     public void nextMedia(){
@@ -253,8 +247,6 @@ public class Controller implements Initializable {
             cancelTimer();
         }
         status=0;
-       // songLbl.setText("");
-       // artistLbl.setText("");
         getMetadata(songNumber);
         playMedia();
     }
@@ -293,17 +285,6 @@ public class Controller implements Initializable {
         };
 
         timer.scheduleAtFixedRate(task, 0, 1000);
-        /*time1Lbl.textProperty().bind(
-            Bindings.createStringBinding(() -> {
-                Duration time = mediaPlayer.getCurrentTime();
-                return String.format("%02d:%02d",
-                        (int) time.toMinutes() % 60,
-                        (int)time.toSeconds() % 3600);
-            },
-        mediaPlayer.currentTimeProperty()));
-
-         */
-
     }
 
     public void cancelTimer() {
