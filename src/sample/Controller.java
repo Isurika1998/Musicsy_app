@@ -1,6 +1,7 @@
 package sample;
 
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -48,6 +49,8 @@ public class Controller implements Initializable {
     private Slider volumeSlider;
     @FXML
     private ProgressBar progressBar;
+    @FXML
+    private FontAwesomeIcon favIcon;
 
     private int songNumber;
 
@@ -299,8 +302,9 @@ public class Controller implements Initializable {
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, 4);
+            preparedStmt.setInt(1, 6);
             preparedStmt.setString (2, songs.get(songNumber).toURI().toString());
+            favIcon.setStyle("-fx-fill-color : red");
 
             // execute the preparedstatement
             preparedStmt.execute();
