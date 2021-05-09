@@ -292,4 +292,21 @@ public class Controller implements Initializable {
         }
     }
 
+    public void addFavourite(){
+        try {
+            Connection con=DBUtil.getConnection();
+            String query = "INSERT INTO favourites values(?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, 4);
+            preparedStmt.setString (2, songs.get(songNumber).toURI().toString());
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
