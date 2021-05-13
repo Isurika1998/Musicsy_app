@@ -68,23 +68,38 @@
             <FontAwesomeIcon fx:id="favIcon" fill="#a168a1" iconName="HEART" layoutX="909.0" layoutY="106.0" onMouseClicked="#addFavourite" size="25px" wrappingWidth="30.0" />
          </children>
       </Pane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="337.0" layoutY="238.0" prefHeight="470.0" prefWidth="1100.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="337.0" layoutY="269.0" prefHeight="482.0" prefWidth="1100.0">
          <content>
-            <VBox fx:id="pnItems" prefHeight="470.0" prefWidth="1100.0" spacing="5.0" style="-fx-background-color: #02030A;">
+            <VBox fx:id="pnItems" prefHeight="482.0" prefWidth="1100.0" spacing="5.0" style="-fx-background-color: #02030A;">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
          </content>
       </ScrollPane>
-      <Pane layoutX="300.0" prefHeight="200.0" prefWidth="1201.0" style="-fx-background-color: #111;">
+      <Pane layoutX="300.0" prefHeight="200.0" prefWidth="1201.0" style="-fx-background-color: #2e032e;">
          <children>
-            <Label layoutX="49.0" layoutY="44.0" prefHeight="46.0" prefWidth="318.0" text="All Songs" textFill="#cd8ecb">
+            <Label layoutX="49.0" layoutY="44.0" prefHeight="46.0" prefWidth="318.0" text="All Songs" textFill="#b99db8">
                <font>
                   <Font name="Calibri Bold" size="44.0" />
                </font>
             </Label>
          </children>
       </Pane>
+      <Label layoutX="502.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Title" textFill="#aaaaaa">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="836.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Author" textFill="#aaaaaa">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="1048.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Album" textFill="#aaaaaa">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
