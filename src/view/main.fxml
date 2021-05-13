@@ -21,7 +21,7 @@
             <FontAwesomeIcon fill="#a168a1" iconName="SEARCH" layoutX="231.0" layoutY="125.0" size="20px" wrappingWidth="18.571428298950195" />
          </children>
       </Pane>
-      <Pane layoutX="300.0" layoutY="765.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="1000.0">
+      <Pane layoutX="300.0" layoutY="765.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="1000.0" style="-fx-border-color: #333; -fx-border-width: 1px 0px 0px 0px;">
          <children>
             <ProgressBar fx:id="progressBar" layoutX="185.0" layoutY="29.0" prefHeight="18.0" prefWidth="749.0" progress="0.0" />
             <Label fx:id="time1Lbl" layoutX="146.0" layoutY="30.0" text="00:00" textFill="WHITE">
@@ -77,5 +77,14 @@
             </VBox>
          </content>
       </ScrollPane>
+      <Pane layoutX="300.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #111;">
+         <children>
+            <Label layoutX="49.0" layoutY="44.0" prefHeight="46.0" prefWidth="318.0" text="All Songs" textFill="#cd8ecb">
+               <font>
+                  <Font name="Calibri Bold" size="44.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
