@@ -164,7 +164,7 @@ public class Controller implements Initializable {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT id,song_name FROM favourites");
             while (rs.next()) {
-                System.out.println(rs.getInt("id")+" "+rs.getString("song_name"));
+               // System.out.println(rs.getInt("id")+" "+rs.getString("song_name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
