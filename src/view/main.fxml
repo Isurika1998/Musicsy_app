@@ -28,7 +28,7 @@
                               <Font name="Calibri Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="25px" wrappingWidth="37.0" />
+                              <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
                            </graphic>
                            <padding>
                               <Insets left="20.0" />
@@ -43,7 +43,7 @@
                               <Font name="Calibri Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="25px" wrappingWidth="37.0" />
+                              <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="20px" wrappingWidth="37.0" />
                            </graphic>
                            <padding>
                               <Insets left="20.0" />
@@ -58,7 +58,7 @@
                               <Font name="Calibri Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="HEART" size="25px" wrappingWidth="37.0" />
+                              <FontAwesomeIcon fill="#a168a1" iconName="HEART" size="20px" wrappingWidth="37.0" />
                            </graphic>
                            <padding>
                               <Insets left="20.0" />
@@ -73,7 +73,7 @@
                               <Font name="Calibri Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="MICROPHONE" size="25px" wrappingWidth="37.0" />
+                              <FontAwesomeIcon fill="#a168a1" iconName="MICROPHONE" size="20px" wrappingWidth="37.0" />
                            </graphic>
                            <padding>
                               <Insets left="20.0" />
@@ -88,7 +88,7 @@
                               <Font name="Calibri Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="ALBUM_COLLECTION" size="25px" wrappingWidth="37.0" />
+                              <FontAwesomeIcon fill="#a168a1" iconName="BOOK" size="20px" wrappingWidth="37.0" />
                            </graphic>
                            <padding>
                               <Insets left="20.0" />
