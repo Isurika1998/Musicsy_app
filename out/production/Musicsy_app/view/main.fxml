@@ -77,9 +77,9 @@
             </VBox>
          </content>
       </ScrollPane>
-      <Pane layoutX="300.0" prefHeight="200.0" prefWidth="1201.0" style="-fx-background-color: #111;">
+      <Pane layoutX="300.0" prefHeight="200.0" prefWidth="1201.0" style="-fx-background-color: #2e032e;">
          <children>
-            <Label layoutX="49.0" layoutY="44.0" prefHeight="46.0" prefWidth="318.0" text="All Songs" textFill="#cd8ecb">
+            <Label layoutX="49.0" layoutY="44.0" prefHeight="46.0" prefWidth="318.0" text="All Songs" textFill="#b99db8">
                <font>
                   <Font name="Calibri Bold" size="44.0" />
                </font>

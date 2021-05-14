@@ -19,6 +19,85 @@
          <children>
             <JFXTextField alignment="CENTER" focusColor="BLACK" layoutX="34.0" layoutY="100.0" prefHeight="36.0" prefWidth="232.0" style="-fx-border-color: #333; -fx-border-radius: 100%; -fx-background-color: #333; -fx-background-radius: 25px;" unFocusColor="BLACK" />
             <FontAwesomeIcon fill="#a168a1" iconName="SEARCH" layoutX="231.0" layoutY="125.0" size="20px" wrappingWidth="18.571428298950195" />
+            <VBox layoutX="34.0" layoutY="195.0" prefHeight="455.0" prefWidth="232.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="232.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="202.0" text="All Music" textFill="#a168a1">
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="25px" wrappingWidth="37.0" />
+                           </graphic>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="232.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="202.0" text="Playlists" textFill="#a168a1">
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="25px" wrappingWidth="37.0" />
+                           </graphic>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="232.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="202.0" text="Favourites" textFill="#a168a1">
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon fill="#a168a1" iconName="HEART" size="25px" wrappingWidth="37.0" />
+                           </graphic>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="232.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="202.0" text="Artists" textFill="#a168a1">
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon fill="#a168a1" iconName="MICROPHONE" size="25px" wrappingWidth="37.0" />
+                           </graphic>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="232.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="202.0" text="Albums" textFill="#a168a1">
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon fill="#a168a1" iconName="ALBUM_COLLECTION" size="25px" wrappingWidth="37.0" />
+                           </graphic>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </Pane>
       <Pane layoutX="300.0" layoutY="765.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="1201.0" style="-fx-border-color: #333; -fx-border-width: 1px 0px 0px 0px;">
@@ -91,7 +170,7 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="836.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Author" textFill="#aaaaaa">
+      <Label layoutX="836.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Artist" textFill="#aaaaaa">
          <font>
             <Font name="Calibri Bold" size="18.0" />
          </font>
