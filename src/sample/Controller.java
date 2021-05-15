@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,7 +17,6 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -76,15 +76,6 @@ public class Controller implements Initializable {
 
     //for db connection
     PreparedStatement pstmt=null;
-
-    @FXML
-    private void onTabClick(ActionEvent event){
-        if(event.getSource() == allmusicBtn){
-            pnl_allmusic.toFront();
-        }else if(event.getSource() == playlistBtn){
-            pnl_playlists.toFront();
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -324,6 +315,14 @@ public class Controller implements Initializable {
             preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void onTabClick(ActionEvent evt){
+        if(evt.getSource() == playlistBtn){
+            pnl_playlists.toFront();
+        }else if(evt.getSource() == allmusicBtn){
+            pnl_allmusic.toFront();
         }
     }
 
