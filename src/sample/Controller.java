@@ -1,6 +1,7 @@
 package sample;
 
 
+import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -40,9 +42,12 @@ public class Controller implements Initializable {
     @FXML
     private Button playBtn, nextBtn, prevBtn, nameBtn;
     @FXML
+    private JFXButton allmusicBtn, playlistBtn;
+
+    @FXML
     private Label songLbl, artistLbl, time1Lbl, time2Lbl;
     @FXML
-    private Pane pane;
+    private Pane pane, pnl_allmusic, pnl_playlists;
     @FXML
     private VBox pnItems = null;
     @FXML
@@ -71,6 +76,15 @@ public class Controller implements Initializable {
 
     //for db connection
     PreparedStatement pstmt=null;
+
+    @FXML
+    private void onTabClick(ActionEvent event){
+        if(event.getSource() == allmusicBtn){
+            pnl_allmusic.toFront();
+        }else if(event.getSource() == playlistBtn){
+            pnl_playlists.toFront();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -312,5 +326,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 
 }

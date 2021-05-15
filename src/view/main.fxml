@@ -21,81 +21,46 @@
             <FontAwesomeIcon fill="#a168a1" iconName="SEARCH" layoutX="231.0" layoutY="125.0" size="20px" wrappingWidth="18.571428298950195" />
             <VBox layoutX="34.0" layoutY="195.0" prefHeight="455.0" prefWidth="232.0">
                <children>
-                  <HBox prefHeight="50.0" prefWidth="232.0">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="202.0" text="All Music" textFill="#a168a1">
-                           <font>
-                              <Font name="Calibri Bold" size="20.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
-                           </graphic>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="232.0">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="202.0" text="Playlists" textFill="#a168a1">
-                           <font>
-                              <Font name="Calibri Bold" size="20.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="20px" wrappingWidth="37.0" />
-                           </graphic>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="232.0">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="202.0" text="Favourites" textFill="#a168a1">
-                           <font>
-                              <Font name="Calibri Bold" size="20.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="HEART" size="20px" wrappingWidth="37.0" />
-                           </graphic>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="232.0">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="202.0" text="Artists" textFill="#a168a1">
-                           <font>
-                              <Font name="Calibri Bold" size="20.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="MICROPHONE" size="20px" wrappingWidth="37.0" />
-                           </graphic>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="232.0">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="202.0" text="Albums" textFill="#a168a1">
-                           <font>
-                              <Font name="Calibri Bold" size="20.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIcon fill="#a168a1" iconName="BOOK" size="20px" wrappingWidth="37.0" />
-                           </graphic>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <JFXButton fx:id="allmusicBtn" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                     <graphic>
+                        <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
+                     </graphic>
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="playlistBtn" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="Playlists" textFill="#a168a1">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="20px" wrappingWidth="37.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="allmusicBtn2" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="allmusicBtn3" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="allmusicBtn4" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
+                     </graphic>
+                  </JFXButton>
                </children>
             </VBox>
          </children>
@@ -147,38 +112,47 @@
             <FontAwesomeIcon fx:id="favIcon" fill="#a168a1" iconName="HEART" layoutX="909.0" layoutY="106.0" onMouseClicked="#addFavourite" size="25px" wrappingWidth="30.0" />
          </children>
       </Pane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="337.0" layoutY="269.0" prefHeight="482.0" prefWidth="1100.0">
-         <content>
-            <VBox fx:id="pnItems" prefHeight="482.0" prefWidth="1100.0" spacing="5.0" style="-fx-background-color: #02030A;">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </VBox>
-         </content>
-      </ScrollPane>
-      <Pane layoutX="300.0" prefHeight="200.0" prefWidth="1201.0" style="-fx-background-color: #2e032e;">
+      <Pane fx:id="pnl_playlists" layoutX="299.0" prefHeight="768.0" prefWidth="1201.0" style="-fx-background-color: grey;" />
+      <Pane fx:id="pnl_allmusic" layoutX="299.0" prefHeight="768.0" prefWidth="1201.0">
          <children>
-            <Label layoutX="49.0" layoutY="44.0" prefHeight="46.0" prefWidth="318.0" text="All Songs" textFill="#b99db8">
+            <Pane layoutY="200.0" prefHeight="568.0" prefWidth="1201.0" style="-fx-background-color: black;">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" layoutX="51.0" layoutY="72.0" prefHeight="482.0" prefWidth="1100.0">
+                     <content>
+                        <VBox fx:id="pnItems" prefHeight="482.0" prefWidth="1100.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="1201.0" style="-fx-background-color: #2e032e;">
+               <children>
+                  <Label layoutX="49.0" layoutY="44.0" prefHeight="46.0" prefWidth="318.0" text="All Songs" textFill="#b99db8">
+                     <font>
+                        <Font name="Calibri Bold" size="44.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="627.0" layoutY="225.0" prefHeight="25.0" prefWidth="72.0" text="#Artist" textFill="#aaaaaa">
                <font>
-                  <Font name="Calibri Bold" size="44.0" />
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="864.0" layoutY="225.0" prefHeight="25.0" prefWidth="72.0" text="#Album" textFill="#aaaaaa">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="234.0" layoutY="225.0" prefHeight="25.0" prefWidth="72.0" text="#Title" textFill="#aaaaaa">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Label layoutX="502.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Title" textFill="#aaaaaa">
-         <font>
-            <Font name="Calibri Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="836.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Artist" textFill="#aaaaaa">
-         <font>
-            <Font name="Calibri Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="1048.0" layoutY="226.0" prefHeight="25.0" prefWidth="72.0" text="#Album" textFill="#aaaaaa">
-         <font>
-            <Font name="Calibri Bold" size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
