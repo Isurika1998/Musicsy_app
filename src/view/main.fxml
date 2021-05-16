@@ -37,28 +37,28 @@
                         <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="20px" wrappingWidth="37.0" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="allmusicBtn2" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                  <JFXButton fx:id="allmusicBtn2" prefHeight="56.0" prefWidth="247.0" text="Favourites" textFill="#a168a1">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
+                        <FontAwesomeIcon fill="#a168a1" iconName="HEART" size="20px" wrappingWidth="37.0" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="allmusicBtn3" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                  <JFXButton fx:id="allmusicBtn3" prefHeight="56.0" prefWidth="247.0" text="Albums" textFill="#a168a1">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
+                        <FontAwesomeIcon fill="#a168a1" iconName="BOOK" size="20px" wrappingWidth="37.0" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="allmusicBtn4" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                  <JFXButton fx:id="allmusicBtn4" prefHeight="56.0" prefWidth="247.0" text="Artists" textFill="#a168a1">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
+                        <FontAwesomeIcon fill="#a168a1" iconName="MICROPHONE" size="20px" wrappingWidth="37.0" />
                      </graphic>
                   </JFXButton>
                </children>
