@@ -15,6 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
+      <Pane fx:id="pnl_favourites" layoutX="300.0" layoutY="200.0" prefHeight="568.0" prefWidth="1201.0" style="-fx-background-color: grey;" />
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="300.0" style="-fx-border-width: 0px 1px 0px 0px; -fx-border-color: #333;">
          <children>
             <JFXTextField alignment="CENTER" focusColor="BLACK" layoutX="34.0" layoutY="100.0" prefHeight="36.0" prefWidth="232.0" style="-fx-border-color: #333; -fx-border-radius: 100%; -fx-background-color: #333; -fx-background-radius: 25px;" unFocusColor="BLACK" />
@@ -37,7 +38,7 @@
                         <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="20px" wrappingWidth="37.0" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="allmusicBtn2" prefHeight="56.0" prefWidth="247.0" text="Favourites" textFill="#a168a1">
+                  <JFXButton fx:id="favouritesBtn" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="Favourites" textFill="#a168a1">
                      <font>
                         <Font name="Calibri Bold" size="20.0" />
                      </font>

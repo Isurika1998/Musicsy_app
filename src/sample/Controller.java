@@ -42,12 +42,12 @@ public class Controller implements Initializable {
     @FXML
     private Button playBtn, nextBtn, prevBtn, nameBtn;
     @FXML
-    private JFXButton allmusicBtn, playlistBtn;
+    private JFXButton allmusicBtn, playlistBtn, favouritesBtn;
 
     @FXML
     private Label songLbl, artistLbl, time1Lbl, time2Lbl, headingLbl;
     @FXML
-    private Pane pane, pnl_allmusic, pnl_playlists;
+    private Pane pane, pnl_allmusic, pnl_playlists, pnl_favourites;
     @FXML
     private VBox pnItems = null;
     @FXML
@@ -80,9 +80,24 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        getSongList("D:\\Songs");
 
+        getMetadata(songNumber);
+
+        //code for volume changing
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+
+                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
+            }
+        });
+    }
+
+    public void getSongList(String path){
         songs = new ArrayList<File>();
-        directory = new File("D:\\Songs");
+        directory = new File(path);
         files = directory.listFiles();
         int count=0;
         if (files != null){
@@ -164,28 +179,6 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         }
-        try {
-            Connection con=DBUtil.getConnection();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id,song_name FROM favourites");
-            while (rs.next()) {
-               // System.out.println(rs.getInt("id")+" "+rs.getString("song_name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        getMetadata(songNumber);
-
-        //code for volume changing
-        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-
-                mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
-            }
-        });
     }
 
 
@@ -319,12 +312,15 @@ public class Controller implements Initializable {
     }
 
     public void onTabClick(ActionEvent evt){
-        if(evt.getSource() == playlistBtn){
-            pnl_playlists.toFront();
-            headingLbl.setText("Playlists");
-        }else if(evt.getSource() == allmusicBtn){
+        if(evt.getSource() == allmusicBtn){
             pnl_allmusic.toFront();
             headingLbl.setText("All Songs");
+        }else if(evt.getSource() == playlistBtn){
+            pnl_playlists.toFront();
+            headingLbl.setText("Playlists");
+        }else if(evt.getSource() == favouritesBtn){
+            pnl_favourites.toFront();
+            headingLbl.setText("Favourites");
         }
     }
 
