@@ -319,7 +319,8 @@ public class Controller implements Initializable {
             pnl_playlists.toFront();
             headingLbl.setText("Playlists");
         }else if(evt.getSource() == favouritesBtn){
-            pnl_favourites.toFront();
+            getSongList("D:\\Favourites");
+            pnl_allmusic.toFront();
             headingLbl.setText("Favourites");
         }
     }
