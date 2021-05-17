@@ -45,7 +45,7 @@ public class Controller implements Initializable {
     private JFXButton allmusicBtn, playlistBtn;
 
     @FXML
-    private Label songLbl, artistLbl, time1Lbl, time2Lbl;
+    private Label songLbl, artistLbl, time1Lbl, time2Lbl, headingLbl;
     @FXML
     private Pane pane, pnl_allmusic, pnl_playlists;
     @FXML
@@ -321,8 +321,10 @@ public class Controller implements Initializable {
     public void onTabClick(ActionEvent evt){
         if(evt.getSource() == playlistBtn){
             pnl_playlists.toFront();
+            headingLbl.setText("Playlists");
         }else if(evt.getSource() == allmusicBtn){
             pnl_allmusic.toFront();
+            headingLbl.setText("All Songs");
         }
     }
 
