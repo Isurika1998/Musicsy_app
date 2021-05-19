@@ -51,6 +51,8 @@ public class Controller implements Initializable {
     @FXML
     private VBox pnItems = null;
     @FXML
+    private HBox itemC;
+    @FXML
     private Slider volumeSlider;
     @FXML
     private ProgressBar progressBar;
@@ -313,12 +315,16 @@ public class Controller implements Initializable {
 
     public void onTabClick(ActionEvent evt){
         if(evt.getSource() == allmusicBtn){
+            pnItems.getChildren().clear();
+            getSongList("D:\\Songs");
             pnl_allmusic.toFront();
             headingLbl.setText("All Songs");
         }else if(evt.getSource() == playlistBtn){
             pnl_playlists.toFront();
             headingLbl.setText("Playlists");
         }else if(evt.getSource() == favouritesBtn){
+           // FavouritesController favController = new FavouritesController();
+            pnItems.getChildren().clear();
             getSongList("D:\\Favourites");
             pnl_allmusic.toFront();
             headingLbl.setText("Favourites");
