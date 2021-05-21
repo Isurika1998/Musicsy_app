@@ -313,18 +313,8 @@ public class Controller implements Initializable {
         }
     }
 
-    public void getFavouriteSongList(String path){
-        songs = new ArrayList<File>();
-        directory = new File(path);
-        files = directory.listFiles();
-        int count=0;
-        if (files != null){
+    public void getFavouriteSongList(int count){
 
-            for (File file : files) {
-                songs.add(file);
-                count++;
-            }
-        }
         Node[] nodes = new Node[count];
         int[] playlistImgFlag = new int[count];
         playlist = new String[count][4];
@@ -408,12 +398,13 @@ public class Controller implements Initializable {
             int i=0;
             while (results.next()) {
                 String data = results.getString(2);
-                File file = new File("D:\\Songs\\"+data);
-               // System.out.println(file.toURI().toString());
-                files = null;
-                files[i]=file;
+                File file = new File(data);
+                System.out.println(file.toURI().toString());
+                songs = new ArrayList<File>();
+                songs.add(file);
                 i++;
             }
+            getFavouriteSongList(i);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -433,7 +424,6 @@ public class Controller implements Initializable {
            // FavouritesController favController = new FavouritesController();
             pnItems.getChildren().clear();
             getFavourites();
-            getSongList("D:\\Favourites");
             pnl_allmusic.toFront();
             headingLbl.setText("Favourites");
         }
