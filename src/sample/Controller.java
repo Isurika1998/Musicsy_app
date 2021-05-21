@@ -313,6 +313,110 @@ public class Controller implements Initializable {
         }
     }
 
+    public void getFavouriteSongList(String path){
+        songs = new ArrayList<File>();
+        directory = new File(path);
+        files = directory.listFiles();
+        int count=0;
+        if (files != null){
+
+            for (File file : files) {
+                songs.add(file);
+                count++;
+            }
+        }
+        Node[] nodes = new Node[count];
+        int[] playlistImgFlag = new int[count];
+        playlist = new String[count][4];
+        int playListSongNo = 0;
+
+        for (File file : files) {
+            try {
+                final int j = playListSongNo;
+
+                //add playlist songs
+                nodes[playListSongNo] = FXMLLoader.load(getClass().getResource("../view/item.fxml"));
+
+                playListMedia = new Media(songs.get(playListSongNo).toURI().toString());
+                int[] finalPlaylistImgFlag = playlistImgFlag;
+
+                // get metadata
+                playListMedia.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
+                    if (c.wasAdded()) {
+                        if ("artist".equals(c.getKey())) {
+                            Label playlistArtist = (Label) nodes[j].lookup("#artist");
+                            playlistArtist.setText(c.getValueAdded().toString());
+                            playlist[j][0]=c.getValueAdded().toString();
+                        } else if ("title".equals(c.getKey())) {
+                            Label playlistSong = (Label) nodes[j].lookup("#song");
+                            playlistSong.setText(j+". "+c.getValueAdded().toString());
+                            playlist[j][1]=c.getValueAdded().toString();
+                        } else if ("album".equals(c.getKey())) {
+                            Label playlistAlbum = (Label) nodes[j].lookup("#album");
+                            playlistAlbum.setText(c.getValueAdded().toString());
+                            playlist[j][2]=c.getValueAdded().toString();
+                        }else if ("image".equals(c.getKey())) {
+                            finalPlaylistImgFlag[j] = 1;
+                            Image i = (Image)c.getValueAdded();
+                            ImageView iv = new ImageView(i);
+                            iv.setFitWidth(60);
+                            iv.setFitHeight(60);
+                            Pane p = (Pane) nodes[j].lookup("#cover");
+                            p.getChildren().add(iv);
+                        }
+                        if(finalPlaylistImgFlag[j] == 0){
+                            Image i = new Image("assets/default-song-cover.png");
+                            ImageView iv = new ImageView(i);
+                            iv.setFitWidth(60);
+                            iv.setFitHeight(60);
+                            Pane p = (Pane) nodes[j].lookup("#cover");
+                            p.getChildren().add(iv);
+                        }
+
+                    }
+                });
+
+                //give the items some effect
+                nodes[playListSongNo].setOnMouseEntered(event -> {
+                    nodes[j].setStyle("-fx-background-color : #4d004d");
+                });
+                nodes[playListSongNo].setOnMouseExited(event -> {
+                    if(j%2==0){
+                        nodes[j].setStyle("-fx-background-color : #111");
+                    }else {
+                        nodes[j].setStyle("-fx-background-color : black");
+                    }
+                });
+                if(j%2==0){
+                    nodes[j].setStyle("-fx-background-color : #111");
+                }
+                pnItems.getChildren().add(nodes[playListSongNo]);
+                playListSongNo++;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public  void getFavourites(){
+        try {
+            Connection con=DBUtil.getConnection();
+            String query = "SELECT * FROM favourites";
+            Statement statement = con.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM favourites");
+
+            while (results.next()) {
+                String data = results.getString(2);
+                File file = new File("D:\\Songs\\"+data);
+                System.out.println(file.toURI().toString());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void onTabClick(ActionEvent evt){
         if(evt.getSource() == allmusicBtn){
             pnItems.getChildren().clear();
@@ -325,6 +429,7 @@ public class Controller implements Initializable {
         }else if(evt.getSource() == favouritesBtn){
            // FavouritesController favController = new FavouritesController();
             pnItems.getChildren().clear();
+            getFavourites();
             getSongList("D:\\Favourites");
             pnl_allmusic.toFront();
             headingLbl.setText("Favourites");
