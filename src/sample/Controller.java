@@ -405,11 +405,14 @@ public class Controller implements Initializable {
             String query = "SELECT * FROM favourites";
             Statement statement = con.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM favourites");
-
+            int i=0;
             while (results.next()) {
                 String data = results.getString(2);
                 File file = new File("D:\\Songs\\"+data);
-                System.out.println(file.toURI().toString());
+               // System.out.println(file.toURI().toString());
+                files = null;
+                files[i]=file;
+                i++;
             }
 
         } catch (SQLException e) {
