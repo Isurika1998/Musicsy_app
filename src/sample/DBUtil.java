@@ -9,7 +9,7 @@ public final class DBUtil {
     static{
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            System.out.println("Driver Loaded");
+            //System.out.println("Driver Loaded");
             isDriverLoaded = true;
         }catch(ClassNotFoundException e){
             e.printStackTrace();
@@ -24,7 +24,7 @@ public final class DBUtil {
         Connection con = null;
         if(isDriverLoaded){
             con  = DriverManager.getConnection(url,user,password);
-            System.out.println("Connection established");
+          //  System.out.println("Connection established");
         }
         return con;
     }
@@ -33,7 +33,7 @@ public final class DBUtil {
     public static void closeConnection(Connection con) throws SQLException{
         if(con!=null){
             con.close();
-            System.out.println("connection closed");
+           // System.out.println("connection closed");
         }
     }
 }

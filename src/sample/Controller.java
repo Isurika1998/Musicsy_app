@@ -133,7 +133,7 @@ public class Controller implements Initializable {
                             playlist[j][0]=c.getValueAdded().toString();
                         } else if ("title".equals(c.getKey())) {
                             Label playlistSong = (Label) nodes[j].lookup("#song");
-                            playlistSong.setText(j+". "+c.getValueAdded().toString());
+                            playlistSong.setText(j+1+". "+c.getValueAdded().toString());
                             playlist[j][1]=c.getValueAdded().toString();
                         } else if ("album".equals(c.getKey())) {
                             Label playlistAlbum = (Label) nodes[j].lookup("#album");
@@ -337,7 +337,7 @@ public class Controller implements Initializable {
                             playlist[j][0]=c.getValueAdded().toString();
                         } else if ("title".equals(c.getKey())) {
                             Label playlistSong = (Label) nodes[j].lookup("#song");
-                            playlistSong.setText(j+". "+c.getValueAdded().toString());
+                            playlistSong.setText(j+1+". "+c.getValueAdded().toString());
                             playlist[j][1]=c.getValueAdded().toString();
                         } else if ("album".equals(c.getKey())) {
                             Label playlistAlbum = (Label) nodes[j].lookup("#album");
@@ -399,7 +399,6 @@ public class Controller implements Initializable {
             while (results.next()) {
                 String data = results.getString(2);
                 File file = new File(data);
-                System.out.println(file.toURI().toString());
                 songs.add(file);
                 i++;
             }
