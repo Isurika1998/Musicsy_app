@@ -299,20 +299,18 @@ public class Controller implements Initializable {
         try {
             Connection con=DBUtil.getConnection();
             String query = "INSERT INTO favourites values(?, ?)";
-
-            // create the mysql insert preparedstatement
+            String temp = songs.get(songNumber).toURI().toString().substring(6);
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, 7);
-            preparedStmt.setString (2, songs.get(songNumber).toURI().toString());
+            preparedStmt.setInt(1, 1);
+            preparedStmt.setString (2, temp);
             favIcon.setStyle("color : red");
-
-            // execute the preparedstatement
             preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    //add the favourite song list to playlist view
     public void getFavouriteSongList(int count){
 
         Node[] nodes = new Node[count];
@@ -320,12 +318,12 @@ public class Controller implements Initializable {
         playlist = new String[count][4];
         int playListSongNo = 0;
 
-        for (File file : files) {
+        for (File file : songs) {
             try {
                 final int j = playListSongNo;
 
-                //add playlist songs
-                nodes[playListSongNo] = FXMLLoader.load(getClass().getResource("../view/item.fxml"));
+                //add playlist song as a row
+                nodes[j] = FXMLLoader.load(getClass().getResource("../view/item.fxml"));
 
                 playListMedia = new Media(songs.get(playListSongNo).toURI().toString());
                 int[] finalPlaylistImgFlag = playlistImgFlag;
@@ -389,7 +387,9 @@ public class Controller implements Initializable {
         }
     }
 
+    //get list of favourite songs from database
     public  void getFavourites(){
+        songs = new ArrayList<File>();
         try {
             Connection con=DBUtil.getConnection();
             String query = "SELECT * FROM favourites";
@@ -400,7 +400,6 @@ public class Controller implements Initializable {
                 String data = results.getString(2);
                 File file = new File(data);
                 System.out.println(file.toURI().toString());
-                songs = new ArrayList<File>();
                 songs.add(file);
                 i++;
             }
@@ -411,6 +410,7 @@ public class Controller implements Initializable {
         }
     }
 
+    //change pane on tab click
     public void onTabClick(ActionEvent evt){
         if(evt.getSource() == allmusicBtn){
             pnItems.getChildren().clear();
