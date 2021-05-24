@@ -175,6 +175,13 @@ public class Controller implements Initializable {
                     nodes[j].setStyle("-fx-background-color : #111");
                 }
                 pnItems.getChildren().add(nodes[playListSongNo]);
+
+                //click on song to play
+                nodes[playListSongNo].setOnMouseClicked(e -> {
+                    songNumber=j;
+                    getMetadata(songNumber);
+                });
+
                 playListSongNo++;
 
             } catch (IOException e) {
