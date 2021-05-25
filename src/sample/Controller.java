@@ -37,7 +37,7 @@ public class Controller implements Initializable {
     @FXML
     private File[] files;
     @FXML
-    private ArrayList<File> songs;
+    private ArrayList<File> songs, favouriteSongs;
 
     @FXML
     private Button playBtn, nextBtn, prevBtn, nameBtn;
@@ -95,6 +95,24 @@ public class Controller implements Initializable {
                 mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
             }
         });
+
+        //get list of favourite songs from database and add them to an arraylist
+        favouriteSongs = new ArrayList<File>();
+        try {
+            Connection con=DBUtil.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM favourites");
+            int i=0;
+            while (results.next()) {
+                String data = results.getString(2);
+                File file = new File(data);
+                favouriteSongs.add(file);
+                i++;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void getSongList(String path){
@@ -193,6 +211,8 @@ public class Controller implements Initializable {
 
     public void getMetadata(int num){
         media = new Media(songs.get(num).toURI().toString());
+        favIcon = new FontAwesomeIcon();
+
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             songLbl.setText(playlist[num][1]);
             artistLbl.setText(playlist[num][0]);
@@ -308,9 +328,9 @@ public class Controller implements Initializable {
             String query = "INSERT INTO favourites values(?, ?)";
             String temp = songs.get(songNumber).toURI().toString().substring(6);
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, 1);
+            preparedStmt.setInt(1, 2);
             preparedStmt.setString (2, temp);
-            favIcon.setStyle("color : red");
+            favIcon.setStyle("-fx-fill : #990099 !important");
             preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -394,28 +414,6 @@ public class Controller implements Initializable {
         }
     }
 
-    //get list of favourite songs from database
-    public  void getFavourites(){
-        songs = new ArrayList<File>();
-        try {
-            Connection con=DBUtil.getConnection();
-            String query = "SELECT * FROM favourites";
-            Statement statement = con.createStatement();
-            ResultSet results = statement.executeQuery("SELECT * FROM favourites");
-            int i=0;
-            while (results.next()) {
-                String data = results.getString(2);
-                File file = new File(data);
-                songs.add(file);
-                i++;
-            }
-            getFavouriteSongList(i);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     //change pane on tab click
     public void onTabClick(ActionEvent evt){
         if(evt.getSource() == allmusicBtn){
@@ -429,7 +427,8 @@ public class Controller implements Initializable {
         }else if(evt.getSource() == favouritesBtn){
            // FavouritesController favController = new FavouritesController();
             pnItems.getChildren().clear();
-            getFavourites();
+            songs = favouriteSongs;
+            getFavouriteSongList(favouriteSongs.size());
             pnl_allmusic.toFront();
             headingLbl.setText("Favourites");
         }
