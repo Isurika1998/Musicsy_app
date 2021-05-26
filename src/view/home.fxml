@@ -21,45 +21,75 @@
                 <FontAwesomeIcon fill="#a168a1" iconName="SEARCH" layoutX="231.0" layoutY="125.0" size="20px" wrappingWidth="18.571428298950195" />
                 <VBox layoutX="34.0" layoutY="195.0" prefHeight="455.0" prefWidth="232.0">
                     <children>
-                        <JFXButton fx:id="allmusicBtn" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
+                        <JFXButton fx:id="allmusicBtn" alignment="BASELINE_LEFT" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="All Music" textFill="#a168a1">
                             <graphic>
                                 <FontAwesomeIcon fill="#a168a1" iconName="MUSIC" size="20px" wrappingWidth="37.0" />
                             </graphic>
                             <font>
                                 <Font name="Calibri Bold" size="20.0" />
                             </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
                         </JFXButton>
-                        <JFXButton fx:id="playlistBtn" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="Playlists" textFill="#a168a1">
+                        <JFXButton fx:id="playlistBtn" alignment="BASELINE_LEFT" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="Playlists" textFill="#a168a1">
                             <font>
                                 <Font name="Calibri Bold" size="20.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIcon fill="#a168a1" iconName="LIST" size="20px" wrappingWidth="37.0" />
                             </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
                         </JFXButton>
-                        <JFXButton fx:id="favouritesBtn" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="Favourites" textFill="#a168a1">
+                        <JFXButton fx:id="favouritesBtn" alignment="BASELINE_LEFT" onAction="#onTabClick" prefHeight="56.0" prefWidth="247.0" text="Favourites" textFill="#a168a1">
                             <font>
                                 <Font name="Calibri Bold" size="20.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIcon fill="#a168a1" iconName="HEART" size="20px" wrappingWidth="37.0" />
                             </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
                         </JFXButton>
-                        <JFXButton fx:id="allmusicBtn3" prefHeight="56.0" prefWidth="247.0" text="Albums" textFill="#a168a1">
+                        <JFXButton fx:id="allmusicBtn3" alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="247.0" text="Albums" textFill="#a168a1">
                             <font>
                                 <Font name="Calibri Bold" size="20.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIcon fill="#a168a1" iconName="BOOK" size="20px" wrappingWidth="37.0" />
                             </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
                         </JFXButton>
-                        <JFXButton fx:id="allmusicBtn4" prefHeight="56.0" prefWidth="247.0" text="Artists" textFill="#a168a1">
+                        <JFXButton fx:id="allmusicBtn4" alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="247.0" text="Artists" textFill="#a168a1">
                             <font>
                                 <Font name="Calibri Bold" size="20.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIcon fill="#a168a1" iconName="MICROPHONE" size="20px" wrappingWidth="37.0" />
                             </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
                         </JFXButton>
                     </children>
                 </VBox>
@@ -67,7 +97,7 @@
         </Pane>
         <Pane layoutX="300.0" layoutY="765.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="1201.0" style="-fx-border-color: #333; -fx-border-width: 1px 0px 0px 0px;">
             <children>
-            <JFXButton fx:id="favIconClicked" layoutX="862.0" layoutY="69.0" onAction="#addFavourite" prefHeight="40.0" prefWidth="40.0" textFill="#b940b5">
+            <JFXButton fx:id="favIconClicked" layoutX="878.0" layoutY="78.0" onAction="#addFavourite" prefHeight="40.0" prefWidth="40.0" textFill="#b940b5">
                <graphic>
                   <FontAwesomeIcon fx:id="heartIcon1" fill="#d04ac7" iconName="HEART" size="25px" />
                </graphic>
@@ -114,7 +144,7 @@
                 </JFXButton>
                 <Slider fx:id="volumeSlider" layoutX="1018.0" layoutY="91.0" prefHeight="14.0" prefWidth="120.0" value="30.0" />
                 <Pane fx:id="pane" prefHeight="135.0" prefWidth="135.0" style="-fx-border-color: white;" />
-            <JFXButton fx:id="favIcon" layoutX="862.0" layoutY="69.0" onAction="#addFavourite" prefHeight="40.0" prefWidth="40.0">
+            <JFXButton fx:id="favIcon" layoutX="878.0" layoutY="78.0" onAction="#addFavourite" prefHeight="40.0" prefWidth="40.0">
                <graphic>
                   <FontAwesomeIcon fx:id="heartIcon" fill="#575555" iconName="HEART" size="25px" />
                </graphic>
