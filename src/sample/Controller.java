@@ -320,24 +320,23 @@ public class Controller implements Initializable {
         }
     }
     public void addFavourite(ActionEvent evt){
-        if(evt.getSource() == favIcon){
-            favIconClicked.toFront();
-        }else if(evt.getSource() == favIconClicked){
-            favIcon.toFront();
-        }
-        //favIcon.setStyle("-fx-fill : #990099");
-        /*try {
+        try {
             Connection con=DBUtil.getConnection();
             String query = "INSERT INTO favourites values(?, ?)";
             String temp = songs.get(songNumber).toURI().toString().substring(6);
+            String songname = temp.replace("%20", " ");
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, 2);
-            preparedStmt.setString (2, temp);
-            favIcon.setStyle("-fx-fill : #990099 !important");
+            preparedStmt.setString (2, songname);
+            if(evt.getSource() == favIcon){
+                favIconClicked.toFront();
+            }else if(evt.getSource() == favIconClicked){
+                favIcon.toFront();
+            }
             preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     //add the favourite song list to playlist view
