@@ -94,6 +94,11 @@ public class Controller implements Initializable {
             }
         });
 
+
+    }
+
+    public void getSongList(String path){
+
         //get list of favourite songs from database and add them to an arraylist
         favouriteSongs = new ArrayList<File>();
         try {
@@ -111,9 +116,8 @@ public class Controller implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
-    public void getSongList(String path){
+        // ---------------------- main part
         songs = new ArrayList<File>();
         directory = new File(path);
         files = directory.listFiles();
@@ -326,7 +330,7 @@ public class Controller implements Initializable {
             String temp = songs.get(songNumber).toURI().toString().substring(6);
             String songname = temp.replace("%20", " ");
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, 2);
+            preparedStmt.setInt(1, 3);
             preparedStmt.setString (2, songname);
             if(evt.getSource() == favIcon){
                 favIconClicked.toFront();
@@ -341,6 +345,23 @@ public class Controller implements Initializable {
 
     //add the favourite song list to playlist view
     public void getFavouriteSongList(int count){
+        //get list of favourite songs from database and add them to an arraylist
+        favouriteSongs = new ArrayList<File>();
+        try {
+            Connection con=DBUtil.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM favourites");
+            int i=0;
+            while (results.next()) {
+                String data = results.getString(2);
+                File file = new File(data);
+                favouriteSongs.add(file);
+                i++;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         Node[] nodes = new Node[count];
         int[] playlistImgFlag = new int[count];
