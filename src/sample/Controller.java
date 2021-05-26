@@ -42,7 +42,7 @@ public class Controller implements Initializable {
     @FXML
     private Button playBtn, nextBtn, prevBtn, nameBtn;
     @FXML
-    private JFXButton allmusicBtn, playlistBtn, favouritesBtn;
+    private JFXButton favIcon, favIconClicked, allmusicBtn, playlistBtn, favouritesBtn;
 
     @FXML
     private Label songLbl, artistLbl, time1Lbl, time2Lbl, headingLbl;
@@ -57,7 +57,7 @@ public class Controller implements Initializable {
     @FXML
     private ProgressBar progressBar;
     @FXML
-    private FontAwesomeIcon favIcon;
+    private FontAwesomeIcon heartIcon;
 
     private int songNumber;
 
@@ -83,7 +83,6 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         getSongList("D:\\Songs");
-
         getMetadata(songNumber);
 
         //code for volume changing
@@ -91,7 +90,6 @@ public class Controller implements Initializable {
 
             @Override
             public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-
                 mediaPlayer.setVolume(volumeSlider.getValue() * 0.01);
             }
         });
@@ -211,7 +209,7 @@ public class Controller implements Initializable {
 
     public void getMetadata(int num){
         media = new Media(songs.get(num).toURI().toString());
-        favIcon = new FontAwesomeIcon();
+       // favIcon = new FontAwesomeIcon();
 
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             songLbl.setText(playlist[num][1]);
@@ -321,9 +319,14 @@ public class Controller implements Initializable {
             nextMedia();
         }
     }
-
-    public void addFavourite(){
-        try {
+    public void addFavourite(ActionEvent evt){
+        if(evt.getSource() == favIcon){
+            favIconClicked.toFront();
+        }else if(evt.getSource() == favIconClicked){
+            favIcon.toFront();
+        }
+        //favIcon.setStyle("-fx-fill : #990099");
+        /*try {
             Connection con=DBUtil.getConnection();
             String query = "INSERT INTO favourites values(?, ?)";
             String temp = songs.get(songNumber).toURI().toString().substring(6);
@@ -334,7 +337,7 @@ public class Controller implements Initializable {
             preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     //add the favourite song list to playlist view
