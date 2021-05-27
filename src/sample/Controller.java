@@ -213,7 +213,16 @@ public class Controller implements Initializable {
 
     public void getMetadata(int num){
         media = new Media(songs.get(num).toURI().toString());
-
+        int flag=0;
+        for (File f : favouriteSongs) {
+            if (f.equals(songs.get(num))) {
+                favIconClicked.toFront();
+                flag=1;
+            }
+        }
+        if(flag == 0){
+            favIcon.toFront();
+        }
 
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             songLbl.setText(playlist[num][1]);
