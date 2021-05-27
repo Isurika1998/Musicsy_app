@@ -8,7 +8,7 @@ public final class DBUtil {
     private static boolean isDriverLoaded = false;
     static{
         try{
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.jdbc.Driver");
             //System.out.println("Driver Loaded");
             isDriverLoaded = true;
         }catch(ClassNotFoundException e){
@@ -16,14 +16,10 @@ public final class DBUtil {
         }
     }
 
-    private final static String url="jdbc:oracle:thin:@localhost:1521:XE";
-    private final static String user="SYSTEM";
-    private final static String password="isurika";
-
     public static Connection getConnection() throws SQLException{
         Connection con = null;
         if(isDriverLoaded){
-            con  = DriverManager.getConnection(url,user,password);
+            con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/musicsy?autoReconnect=true&useSSL=false","root","isurika");
           //  System.out.println("Connection established");
         }
         return con;

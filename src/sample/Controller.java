@@ -213,7 +213,7 @@ public class Controller implements Initializable {
 
     public void getMetadata(int num){
         media = new Media(songs.get(num).toURI().toString());
-       // favIcon = new FontAwesomeIcon();
+
 
         media.getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> c) -> {
             songLbl.setText(playlist[num][1]);
@@ -326,12 +326,11 @@ public class Controller implements Initializable {
     public void addFavourite(ActionEvent evt){
         try {
             Connection con=DBUtil.getConnection();
-            String query = "INSERT INTO favourites values(?, ?)";
+            String query = "INSERT INTO favourites(name) values(?)";
             String temp = songs.get(songNumber).toURI().toString().substring(6);
             String songname = temp.replace("%20", " ");
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setInt(1, 3);
-            preparedStmt.setString (2, songname);
+            preparedStmt.setString (1, songname);
             if(evt.getSource() == favIcon){
                 favIconClicked.toFront();
             }else if(evt.getSource() == favIconClicked){
