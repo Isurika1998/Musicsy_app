@@ -333,19 +333,46 @@ public class Controller implements Initializable {
         }
     }
     public void addFavourite(ActionEvent evt){
+        String temp = songs.get(songNumber).toURI().toString().substring(6);
+        String songname = temp.replace("%20", " ");
+        if(evt.getSource()==favIcon){
+            try {
+                Connection con=DBUtil.getConnection();
+                String query = "INSERT INTO favourites(name) values(?)";
+                PreparedStatement preparedStmt = con.prepareStatement(query);
+                preparedStmt.setString (1, songname);
+                preparedStmt.execute();
+                favIconClicked.toFront();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }else if (evt.getSource()==favIconClicked){
+            try {
+                Connection con = DBUtil.getConnection();
+                String query = "delete from favourites where name = ?";
+                PreparedStatement preparedStmt = con.prepareStatement(query);
+                preparedStmt.setString(1, songname);
+                preparedStmt.execute();
+                favIcon.toFront();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //get list of favourite songs from database and add them to an arraylist
+        favouriteSongs = new ArrayList<File>();
         try {
             Connection con=DBUtil.getConnection();
-            String query = "INSERT INTO favourites(name) values(?)";
-            String temp = songs.get(songNumber).toURI().toString().substring(6);
-            String songname = temp.replace("%20", " ");
-            PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString (1, songname);
-            if(evt.getSource() == favIcon){
-                favIconClicked.toFront();
-            }else if(evt.getSource() == favIconClicked){
-                favIcon.toFront();
+            Statement statement = con.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM favourites");
+            int i=0;
+            while (results.next()) {
+                String data = results.getString(2);
+                File file = new File(data);
+                favouriteSongs.add(file);
+                i++;
             }
-            preparedStmt.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
